@@ -1,0 +1,44 @@
+================================================================== 
+https://keybase.io/cyanolupus 
+-------------------------------------------------------------------- 
+I hereby claim:
+  * I am an admin of https://cyanolup.us * I am 
+  cyanolupus (https://keybase.io/cyanolupus) on 
+  keybase. * I have a public key 
+  ASDuuNMBmwvM2nB0vphx-kAbb60WcF0KO5iVc3ac_lbnCgo
+To do so, I am signing this object: { "body": { 
+    "key": {
+      "eldest_kid": 
+      "0120c8e3f780de558b49f025af28db3efecf17230e10270eb64bd14d04efaaf826fa0a", 
+      "host": "keybase.io", "kid": 
+      "0120eeb8d3019b0bccda7074be9871fa401b6fad16705d0a3b989573769cfe56e70a0a", 
+      "uid": "ac74c8efa17662640512c94205616b19", 
+      "username": "cyanolupus"
+    },
+    "merkle_root": { "ctime": 1631154363, "hash": 
+      "eb239305048e73cd4b7c7652421feb8552860fbf859c31e0a82bcdbb2ccb2d11cb421eb0355f662b7b57998a050dd4a900d4ddf72d2f08797e044e6537686056", 
+      "hash_meta": 
+      "13e8fe1b7657c454b71de2af39b912210f7868520be3621c3fcaa9d613e2e0bd", 
+      "seqno": 20726054
+    },
+    "service": { "entropy": 
+      "Myvt4HmPYtQWp9EMHmM4z5Zd", "hostname": 
+      "cyanolup.us", "protocol": "https:"
+    },
+    "type": "web_service_binding", "version": 2
+  },
+  "client": { "name": "keybase.io go client", 
+    "version": "5.7.0"
+  },
+  "ctime": 1631154456, "expire_in": 504576000, 
+  "prev": 
+  "f1b63e863d394f8bfd3d5f4ec92c4fc27e0fdb1cec86e51246d47b82b6d194c9", 
+  "seqno": 81, "tag": "signature"
+}
+which yields the signature: 
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg7rjTAZsLzNpwdL6YcfpAG2+tFnBdCjuYlXN2nP5W5woKp3BheWxvYWTESpcCUcQg8bY+hj05T4v9PV9OySxPwn4P2xzshuUSRtR7grbRlMnEIHJ9QLE6tgOfUb0DQe7uu5tib4xYJ8y3j3ihqrtovqNqAgHCo3NpZ8RAO5ZMfnQy7iJigr1fZKhv1BsF4mAi1ZqL1w5CAR7Zo++ZkbjKhRSaZH1iFZQCosmPO9Zdk422rE7+WE5sgtrqDqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIELEuyhaJSI+1FgnS7OimgdHf8pTGLmKjPGtCThJOwPgo3RhZ80CAqd2ZXJzaW9uAQ== 
+And finally, I am proving ownership of this host by 
+posting or appending to this document. View my 
+publicly-auditable identity here: 
+https://keybase.io/cyanolupus
+==================================================================
