@@ -5,8 +5,6 @@ body {
 }
 
 h1 {
-    width: 50%;
-    font-size: 32px;
     color: #21000b;
 }
 
@@ -18,15 +16,41 @@ ul {
     color: #21000b;
 }
 
-.icon {
-    width: 50%;
-    max-width: 256px;
+.padding {
+    width: 100%;
+    height: 70px;
 }
 
-.iconln {
-    text-decoration: none;
-    height: auto;
-    width: 128px;
+.topbar {
+    width: 100%;
+    height: 70px;
+    background-color: #21000b;
+    box-sizing: border-box;
+    padding-top: 5px;
+    padding-left: 20px;
+    display: flex;
+    position: fixed;
+    left: 0%;
+    top: 0%;
+}
+
+textarea {
+    margin-left: 1%;
+    background-color: #21000b;
+    color: #fefefe;
+    height: 90%;
+    width: 100%;
+    resize: horizontal;
+    border: none;
+    outline: none;
+    text-align: left;
+    font-size: 48px;
+}
+
+.topbar_icon {
+    border-radius: 100%;
+    align-self: center;
+    height: 80%;
 }
 
 .account {
@@ -47,26 +71,14 @@ ul {
 }
 
 .owariya {
-    color: #ffffff;
+    text-decoration: none;
+    color: #21000b;
+}
+
+.owariya:hover {
+    color: #fefefe;
     background-color: #21000b;
     border-radius: 100vh;
     font-weight: bold;
     text-decoration: none;
-}
-
-.owariya:hover {
-    color: #ffffff;
-    background-color: #2b000e;
-    border-radius: 100vh;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-textarea {
-    background-color: black;
-    color: whitesmoke;
-    border-radius: 15px;
-    height: 128px;
-    width: 30%;
-    max-width: 256px;
 }
