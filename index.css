@@ -1,7 +1,5 @@
 body {
     background-color: #fefefe;
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -16,69 +14,70 @@ ul {
     color: #21000b;
 }
 
-.padding {
-    width: 100%;
-    height: 70px;
+.iconarea {
+    height: 20%;
+    width: auto;
 }
 
-.topbar {
-    width: 100%;
-    height: 70px;
-    background-color: #21000b;
-    box-sizing: border-box;
-    padding-top: 5px;
-    padding-left: 20px;
-    display: flex;
-    position: fixed;
-    left: 0%;
-    top: 0%;
+.icon {
+    vertical-align: top;
+    height: 100%;
+    max-width: 20%;
 }
 
-textarea {
-    margin-left: 1%;
-    background-color: #21000b;
-    color: #fefefe;
-    height: 90%;
-    width: 100%;
-    resize: horizontal;
+.talking {
+    vertical-align: top;
+    background-color: #fefefe;
+    color: #21000b;
+    resize: none;
+    width: auto;
     border: none;
     outline: none;
     text-align: left;
-    font-size: 48px;
-}
-
-.topbar_icon {
-    border-radius: 100%;
-    align-self: center;
-    height: 80%;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .account {
     color: #21000b;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 19px;
+}
+
+.account:hover {
+    color: #7d1e3f;
+    font-weight: bold;
+    font-size: 19px;
 }
 
 .non-account {
     color: #21000b;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
 }
 
-.a {
+.grafana {
     font-weight: bold;
     color: #fefefe;
+    font-size: 3px;
+    text-decoration: none;
+}
+
+.grafana:hover {
+    font-weight: bold;
+    color: #21000b;
+    font-size: 17px;
+    text-decoration: none;
 }
 
 .owariya {
-    text-decoration: none;
     color: #21000b;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .owariya:hover {
-    color: #fefefe;
-    background-color: #21000b;
-    border-radius: 100vh;
+    color: #21000b;
     font-weight: bold;
     text-decoration: none;
 }
