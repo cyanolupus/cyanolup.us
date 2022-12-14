@@ -23,7 +23,8 @@ ul {
     vertical-align: top;
     height: 100%;
     width: auto;
-    max-width: 200px;
+    max-height: 20vw;
+    max-width: 20vw;
 }
 
 .talking {
@@ -31,11 +32,14 @@ ul {
     background-color: #fefefe;
     color: #21000b;
     resize: none;
+    height: 100%;
     width: auto;
+    max-height: 20vw;
+    max-width: 70vw;
     border: none;
     outline: none;
     text-align: left;
-    font-size: 20px;
+    font-size: 2vw;
     font-weight: bold;
 }
 
