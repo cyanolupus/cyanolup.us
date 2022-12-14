@@ -14,8 +14,8 @@
 }
 @media screen and (max-width:480px) {
     :root {
-        --h1-size: 24px;
-        --h2-size: 18px;
+        --h1-size: 26px;
+        --h2-size: 20px;
         --body-size: 16px;
     }
 }
