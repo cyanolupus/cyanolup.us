@@ -15,21 +15,32 @@
         <meta name="twitter:site" content="@cyanolupus" />
         <meta name=“twitter:image” content="https://cyanolup.us/icon.png" />
         <style>
+            :root {
+                --main-text: #21000b;
+                --main-bg: #fefefe;
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --main-text: #fefefe;
+                    --main-bg: #21000b;
+                }
+            }
+
             body {
-                background-color: #fefefe;
+                background-color: var(--main-bg);
                 font-family: Arial, Helvetica, sans-serif;
             }
 
             h1 {
-                color: #21000b;
+                color: var(--main-text);
             }
 
             h2 {
-                color: #21000b;
+                color: var(--main-text);
             }
 
             ul {
-                color: #21000b;
+                color: var(--main-text);
             }
 
             .iconarea {
@@ -51,8 +62,8 @@
 
             .talking {
                 vertical-align: top;
-                background-color: #fefefe;
-                color: #21000b;
+                background-color: var(--main-bg);
+                color: var(--main-text);
                 resize: none;
                 height: 100%;
                 width: auto;
@@ -70,7 +81,7 @@
             }
 
             .accountlink {
-                color: #21000b;
+                color: var(--main-text);
                 font-weight: bold;
                 font-size: 19px;
             }
@@ -82,7 +93,7 @@
             }
 
             .non-account {
-                color: #21000b;
+                color: var(--main-text);
                 font-weight: bold;
                 font-size: 17px;
                 min-height: 28px;
@@ -90,26 +101,26 @@
 
             .grafana {
                 font-weight: bold;
-                color: #fefefe;
+                color: var(--main-bg);
                 font-size: 3px;
                 text-decoration: none;
             }
 
             .grafana:hover {
                 font-weight: bold;
-                color: #21000b;
+                color: var(--main-text);
                 font-size: 17px;
                 text-decoration: none;
             }
 
             .owariya {
-                color: #21000b;
+                color: var(--main-text);
                 font-weight: bold;
                 text-decoration: none;
             }
 
             .owariya:hover {
-                color: #21000b;
+                color: var(--main-text);
                 font-weight: bold;
                 text-decoration: none;
             }
