@@ -16,15 +16,16 @@ ul {
 }
 
 .iconarea {
-    height: 20%;
+    height: 20vh;
+    width: 100vw;
 }
 
 .icon {
     vertical-align: top;
     height: 100%;
     width: auto;
-    max-height: 20vw;
-    max-width: 20vw;
+    max-height: 20vh;
+    max-width: 20vh;
 }
 
 .talking {
@@ -34,12 +35,12 @@ ul {
     resize: none;
     height: 100%;
     width: auto;
-    max-height: 20vw;
-    max-width: 70vw;
+    max-height: 20vh;
+    max-width: 40vh;
     border: none;
     outline: none;
     text-align: left;
-    font-size: 2vw;
+    font-size: 19px;
     font-weight: bold;
 }
 
