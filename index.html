@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -14,36 +14,137 @@
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@cyanolupus" />
         <meta name=“twitter:image” content="https://cyanolup.us/icon.png" />
+        <style>
+            body {
+                background-color: #fefefe;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            h1 {
+                color: #21000b;
+            }
+
+            h2 {
+                color: #21000b;
+            }
+
+            ul {
+                color: #21000b;
+            }
+
+            .iconarea {
+                height: 20vh;
+                width: 100vw;
+            }
+
+            .icon {
+                vertical-align: top;
+                height: 100%;
+                width: auto;
+                max-height: 20vh;
+                max-width: 20vh;
+            }
+
+            .talking {
+                vertical-align: top;
+                background-color: #fefefe;
+                color: #21000b;
+                resize: none;
+                height: 100%;
+                width: auto;
+                max-height: 20vh;
+                max-width: 20vh;
+                border: none;
+                outline: none;
+                text-align: left;
+                font-size: 19px;
+                font-weight: bold;
+            }
+
+            .account {
+                min-height: 28px;
+            }
+
+            .accountlink {
+                color: #21000b;
+                font-weight: bold;
+                font-size: 19px;
+            }
+
+            .accountlink:hover {
+                color: #7d1e3f;
+                font-weight: bold;
+                font-size: 19px;
+            }
+
+            .non-account {
+                color: #21000b;
+                font-weight: bold;
+                font-size: 17px;
+                min-height: 28px;
+            }
+
+            .grafana {
+                font-weight: bold;
+                color: #fefefe;
+                font-size: 3px;
+                text-decoration: none;
+            }
+
+            .grafana:hover {
+                font-weight: bold;
+                color: #21000b;
+                font-size: 17px;
+                text-decoration: none;
+            }
+
+            .owariya {
+                color: #21000b;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+            .owariya:hover {
+                color: #21000b;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        </style>
     </head>
 
     <body>
         <h1>cyanolupus</h1>
         <p class="iconarea">
-            <img src="icon_trs.png" title="あいこん" alt="おれがかいた" class="icon">
-            <textarea class="talking" rows="9">< hi&#10;< I'm&#10;< さいあの/るぷす</textarea>
+            <a href="icon_trs.png"><picture>
+                <source type="image/webp"
+                        srcset="icon_trs.webp">
+                <img src="icon_trs.png"
+                     alt="画像" title="あいこん" alt="おれがかいた" class="icon">
+            </picture></a>
+            <textarea class="talking" rows="9" lang="ja">< hi&#10;< I'm&#10;< さいあの/るぷす</textarea>
         </p>
 
         <h2>Accounts</h2>
-        <ul>
-            <li><a href="https://twitter.com/cyanolupus/" class="account">Twitter</a> <a href="https://twitter.com/cyano_lupus/" class="account">🔒</a></li>
-            <li><a href="https://github.com/cyanolupus" class="account">GitHub</a></li>
-            <li><a href="https://scrapbox.io/cyanolupus/" class="account">Scrapbox</a></li>
-            <li><a href="https://www.amazon.co.jp/hz/wishlist/genericItemsPage/2O3Z74ZX7B0L2" class="account">Wishlist</a></li>
-            <li><a href="https://www.last.fm/user/cyanolupus" class="account">last.fm</a></li>
-            <li>
-                <a href="https://keybase.io/cyanolupus" class="account">Keybase</a>
-                <a href="keybase.txt" class="account">.txt</a>
+        <ul class="accountlist">
+            <li class="account"><a href="https://twitter.com/cyanolupus/" class="accountlink">Twitter</a> <a href="https://twitter.com/cyano_lupus/" class="accountlink">🔒</a></li>
+            <li class="account"><a href="https://github.com/cyanolupus" class="accountlink">GitHub</a></li>
+            <li class="account"><a href="https://scrapbox.io/cyanolupus/" class="accountlink">Scrapbox</a></li>
+            <li class="account"><a href="https://www.amazon.co.jp/hz/wishlist/genericItemsPage/2O3Z74ZX7B0L2" class="accountlink">Wishlist</a></li>
+            <li class="account"><a href="https://www.last.fm/user/cyanolupus" class="accountlink">last.fm</a></li>
+            <li class="account">
+                <a href="https://keybase.io/cyanolupus" class="accountlink">Keybase</a>
+                <a href="keybase.txt" class="accountlink">.txt</a>
             </li>
         </ul>
 
-        <h2>Accounts 以外</h2>
+        <h2 lang="ja">Accounts 以外</h2>
         <ul>
-            <li><label class="non-account">学園都市のB3</label></li>
-            <li><label class="non-account">情報科学(工学？)をやっているらしい</label></li>
-            <li><a href="https://grafana.cyanolup.us" class="grafana">?</a></li>
+            <li class="non-account" lang="ja">学園都市のB3</li>
+            <li class="non-account" lang="ja">情報科学(工学？)をやっているらしい</li>
+            <li class="non-account" lang="ja"><a href="https://grafana.cyanolup.us" class="grafana">?</a></li>
         </ul>
 
-        <h2><a href="https://owari.shop/" class="owariya">おわりや</a></h2>
+        <h2><a href="https://owari.shop/" class="owariya" lang="ja">おわりや</a></h2>
         <!-- こんなののこんなとこ見るな 終 -->
     </body>
 </html>
