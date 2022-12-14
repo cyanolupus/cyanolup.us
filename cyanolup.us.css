@@ -1,0 +1,129 @@
+:root {
+    --main-text: #21000b;
+    --main-bg: #fefefe;
+    --h1-size: 32px;
+    --h2-size: 24px;
+    --body-size: 18px;
+    --main-hover: #7d1e3f;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-text: #fff5f5;
+        --main-bg: #21000b;
+    }
+}
+@media screen and (max-width:480px) {
+    :root {
+        --h1-size: 24px;
+        --h2-size: 18px;
+        --body-size: 16px;
+    }
+}
+
+body {
+    background-color: var(--main-bg);
+    line-height: 1.8em;
+    font-size: var(--body-size);
+    font-family: Arial, Helvetica, sans-serif;
+    transition: .5s;
+}
+
+h1 {
+    color: var(--main-text);
+    line-height: 1.3em;
+    font-size: var(--h1-size);
+}
+
+h2 {
+    color: var(--main-text);
+    line-height: 1.3em;
+    font-size: var(--h2-size);
+}
+
+ul {
+    color: var(--main-text);
+}
+
+.iconarea {
+    height: 22vh;
+    width: 100vw;
+    white-space: nowrap;
+}
+
+.icon {
+    vertical-align: top;
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    aspect-ratio: attr(width) / attr(height);
+}
+
+.iconlink {
+    text-decoration: none;
+}
+
+.talking {
+    line-height: 1.8em;
+    vertical-align: top;
+    background-color: var(--main-bg);
+    font-size: var(--h2-size);
+    color: var(--main-text);
+    resize: none;
+    height: 100%;
+    width: auto;
+    border: none;
+    outline: none;
+    text-align: left;
+    font-weight: bold;
+    transition: .5s;
+}
+
+.account {
+    line-height: 1.8em;
+    color: var(--main-text);
+}
+
+.account:hover {
+    line-height: 1.8em;
+    color: var(--main-text);
+}
+
+.accountlink {
+    color: var(--main-text);
+    font-weight: bold;
+}
+
+.accountlink:hover {
+    color: var(--main-hover);
+    font-weight: bold;
+}
+
+.non-account {
+    line-height: 1.8em;
+    color: var(--main-text);
+    font-weight: bold;
+}
+
+.grafana {
+    font-weight: bold;
+    color: var(--main-bg);
+    text-decoration: none;
+}
+
+.grafana:hover {
+    font-weight: bold;
+    color: var(--main-text);
+    text-decoration: none;
+}
+
+.owariya {
+    color: var(--main-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.owariya:hover {
+    color: var(--main-text);
+    font-weight: bold;
+    text-decoration: none;
+}
