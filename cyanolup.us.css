@@ -30,50 +30,34 @@ body {
 }
 
 h1 {
-    color: var(--main-text);
+    color: inherit;
     line-height: 1.3em;
     font-size: var(--h1-size);
 }
 
 h2 {
-    color: var(--main-text);
+    color: inherit;
     line-height: 1.3em;
     font-size: var(--h2-size);
 }
 
 ul {
-    color: var(--main-text);
+    color: inherit;
 }
 
-li {
+li,li:hover {
     line-height: 1.8em;
-    color: var(--main-text);
+    color: inherit;
     font-weight: bold;
 }
 
-li:hover {
-    line-height: 1.8em;
-    color: var(--main-text);
+a,a:link {
+    color: inherit;
     font-weight: bold;
 }
 
-a {
-    color: var(--main-text);
-    font-weight: bold;
-}
-
-a:hover {
+a:hover,a:visited {
     color: var(--main-hover);
-    font-weight: bold;
-}
-
-a:link {
-    color: var(--main-text);
-    font-weight: bold;
-}
-
-a:visited {
-    color: var(--main-text);
     font-weight: bold;
 }
 
@@ -123,14 +107,8 @@ a:visited {
     text-decoration: none;
 }
 
-.owariya {
-    color: var(--main-text);
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.owariya:hover {
-    color: var(--main-text);
+.owariya,.owariya:hover {
+    color: inherit;
     font-weight: bold;
     text-decoration: none;
 }
