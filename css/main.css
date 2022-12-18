@@ -43,7 +43,7 @@ h2 {
 
 ul {
     color: var(--main-text);
-    padding-left: 0px;
+    padding-left: 1.5em;
 }
 
 li {
@@ -55,9 +55,13 @@ li {
 }
 
 li:before {
-    color: var(--main-hover);
+    opacity: 70%;
     content: "-";
     font-weight: normal;
+    font-size: 1.8em;
+    vertical-align: middle;
+    position: absolute;
+    left: -0.5em;
 }
 
 a,a:link,a:visited {
@@ -72,13 +76,17 @@ a:hover,a:active {
     font-weight: bold;
 }
 
-.iconarea {
+.talking {
     height: 22vh;
     width: 100vw;
     white-space: nowrap;
 }
 
-.icon {
+.talking a {
+    text-decoration: none;
+}
+
+.talking a img {
     vertical-align: top;
     height: 100%;
     width: auto;
@@ -86,11 +94,7 @@ a:hover,a:active {
     aspect-ratio: attr(width) / attr(height);
 }
 
-.iconlink {
-    text-decoration: none;
-}
-
-.talking {
+.talking textarea {
     line-height: 1.8em;
     vertical-align: top;
     background-color: var(--main-bg);
@@ -106,7 +110,7 @@ a:hover,a:active {
     transition: .5s;
 }
 
-.grafana {
+.grafana,.grafana:link,.grafana:visited,.grafana:active {
     font-weight: bold;
     color: var(--main-bg);
     text-decoration: none;
@@ -118,7 +122,7 @@ a:hover,a:active {
     text-decoration: none;
 }
 
-.owariya,.owariya:hover {
+h2 a,h2 a:hover,h2 a:active {
     color: var(--main-text);
     font-weight: bold;
     text-decoration: none;
