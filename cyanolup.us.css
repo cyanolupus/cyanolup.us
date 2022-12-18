@@ -51,12 +51,12 @@ li,li:hover {
     font-weight: bold;
 }
 
-.ln {
+a,a:link {
     color: var(--main-text);
     font-weight: bold;
 }
 
-.ln:hover {
+a:hover,a:active,a:visited {
     color: var(--main-hover);
     font-weight: bold;
 }
