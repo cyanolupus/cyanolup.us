@@ -21,6 +21,7 @@
 }
 
 body {
+    color: var(--main-text);
     background-color: var(--main-bg);
     line-height: 1.8em;
     font-size: var(--body-size);
