@@ -78,12 +78,12 @@ a:hover,a:active {
 
 code {
     display: inline-block;
-    color: #fff;
+    color: #c9d1d9;
     line-height: 1em;
     padding-left: 0.3em;
     padding-right: 0.3em;
     border-radius: 3px;
-    background-color: #25292f;
+    background-color: #0d1117;
 }
 
 pre > code {
