@@ -30,29 +30,29 @@ body {
 }
 
 h1 {
-    color: inherit;
+    color: var(--main-text);
     line-height: 1.3em;
     font-size: var(--h1-size);
 }
 
 h2 {
-    color: inherit;
+    color: var(--main-text);
     line-height: 1.3em;
     font-size: var(--h2-size);
 }
 
 ul {
-    color: inherit;
+    color: var(--main-text);
 }
 
 li,li:hover {
     line-height: 1.8em;
-    color: inherit;
+    color: var(--main-text);
     font-weight: bold;
 }
 
 .link,.link:link {
-    color: inherit;
+    color: var(--main-text);
     font-weight: bold;
 }
 
@@ -108,7 +108,7 @@ li,li:hover {
 }
 
 .owariya,.owariya:hover {
-    color: inherit;
+    color: var(--main-text);
     font-weight: bold;
     text-decoration: none;
 }
