@@ -75,6 +75,11 @@ a:hover,a:active {
     font-weight: bold;
 }
 
+img {
+    height: 30vh;
+    width: auto;
+}
+
 code {
     display: inline-block;
     color: #c9d1d9;
