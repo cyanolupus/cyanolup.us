@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="shortcut icon" href="https://cyanolup.us/img/icon_trs_low.png" type="image/x-icon">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="cyanolup.us" />
+        <meta property=“og:image” content="https://cyanolup.us/img/icon.jpg" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@cyanolupus" />
+        <meta name=“twitter:image” content="https://cyanolup.us/img/icon.jpg" />
+        <link rel="stylesheet" href="../../css/main.css" type="text/css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js">
+        <meta property="og:description" content="さいあの/るぷす" />
+        <meta property="og:title" content="20220809-navidrome" />
+        <title>20220809-navidrome</title>
+    </head>
+
+    <body>
+        <h1>navidromeのお話</h1>
+
+        <h2>navidromeって何？</h2>
+        <p>🎉 セルフホスト音楽ストリーミングサービス🎉
+            （みたいなことができるだけで実際はsubsonic互換の音楽サーバー）</p>
+        <p><a href="https://github.com/navidrome/navidrome">https://github.com/navidrome/navidrome</a></p>
+        <img src="https://raw.githubusercontent.com/navidrome/navidrome/master/resources/logo-192x192.png">
+
+        <h2>何が嬉しいんだよ</h2>
+        <ul>
+            <li>自分の持っている音源を気軽に再生できる</li>
+            <li>端末を購入するたびに音源をコピーしなくてもいい</li>
+            <li>CDを購入するたびに音楽を同期する必要がない</li>
+        </ul>
+
+        <h2>なぜセルフホスト</h2>
+        既存の音楽ストリーミングサービスに付随する音楽ロッカー機能が使いにくい
+        <ul>
+            <li>YouTube Music ← 帯域制御か容量のために音源がエンコードされてしまう</li>
+            <li>iCloud ミュージックライブラリ ← 毎月の出費が嵩んでしまう</li>
+            <li>手元で建てればアップロードに時間をかけなくてもいい</li>
+        </ul>
+
+        <h2>早速立ててみる</h2>
+        <p>Dockerイメージがあるのでシュッとね（docker使い方講座ではないので）</p>
+        <pre><code># compose.yml
+navidrome:
+    image: deluan/navidrome:latest
+    user: 1000:1000 # 音源のオーナー
+    ports:
+        - "4533:4533"
+    restart: unless-stopped
+    environment:
+        # 適当に
+        ND_SCANSCHEDULE: 1h
+        ND_LOGLEVEL: info
+        ND_SESSIONTIMEOUT: 24h
+        ND_BASEURL: ""
+    volumes:
+        - "./data:/data" # キャッシュなどが入る
+        - "./path/to/music/library:/music:ro" # 音源ディレクトリをマウント</code></pre>
+
+
+        <h2>立ててみる2</h2>
+        <p><code>$ docker compose up -d</code>！（docker compose v2 使おう！）</p>
+        <p>ブラウザに http://localhost:4533 とか打つと入れる．</p>
+
+        <h2>どのような？</h2>
+        <p>数分でスキャンが完了してアートワークが並び始める．</p>
+        <p>Spotify風のテーマがある(下図)</p>
+        <p><img src="./img/navidrome_0.png" width="100%"></p>
+
+        <h2>ここがすごい</h2>
+        <p>FLACで取り込まれた音源はストリーミング再生するときにもFLACのまま降ってきている（うれしいね）</p>
+        <p><img src="./img/navidrome_1.png" width="100%"></p>
+
+        <h2>ここがすごい2</h2>
+        <p>再生するクライアントごとにエンコード先コーデックやビットレートを選択することができる（クライアントはAndroidだとSymfoniumってアプリが活発でいいですよ）</p>
+        <p><img src="./img/navidrome_2.png" width="40%">
+            <img src="./img/navidrome_3.png" width="40%"></p>
+
+        <h2>ここがすごい3</h2>
+        <p>last.fm へ scrobble できる！（なんかしらんサービスにも）</p>
+        <p><img src="./img/navidrome_4.png" width="100%"></p>
+
+        <h2>応用</h2>
+        <ul>
+            <li>`rclone mount` などを用いて無制限ドライブへのマッピング（容量が嵩むと困る場合に）</li>
+            <li>ドメインを持っていればargo tunnelなどをコンテナに刺すことで安全なグローバルインターネットに</li>
+            <li>dlsiteやYouTubeから引っ張ってきた他言できない異常音源用のnavidromeを立てる</li>
+        </ul>
+
+        <h2>おわりや</h2>
+        <p>時代は文化！音楽を楽しもう</p>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>
