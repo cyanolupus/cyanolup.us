@@ -78,6 +78,7 @@ a:hover,a:active {
 img {
     height: 30vh;
     width: auto;
+    max-width: 100vw;
 }
 
 code {
