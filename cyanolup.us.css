@@ -51,12 +51,12 @@ li,li:hover {
     font-weight: bold;
 }
 
-.link {
+.account {
     color: var(--main-text);
     font-weight: bold;
 }
 
-.link:hover {
+.account:hover {
     color: var(--main-hover);
     font-weight: bold;
 }
