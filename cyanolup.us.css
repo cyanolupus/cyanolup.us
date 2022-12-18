@@ -67,6 +67,16 @@ a:hover {
     font-weight: bold;
 }
 
+a:link {
+    color: var(--main-text);
+    font-weight: bold;
+}
+
+a:visited {
+    color: var(--main-text);
+    font-weight: bold;
+}
+
 .iconarea {
     height: 22vh;
     width: 100vw;
