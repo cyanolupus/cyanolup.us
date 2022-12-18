@@ -41,9 +41,13 @@ h2 {
     font-size: var(--h2-size);
 }
 
+p {
+    padding-left: 0.5em;
+}
+
 ul {
     color: var(--main-text);
-    padding-left: 1.5em;
+    padding-left: 2em;
 }
 
 li {
