@@ -45,6 +45,28 @@ ul {
     color: var(--main-text);
 }
 
+li {
+    line-height: 1.8em;
+    color: var(--main-text);
+    font-weight: bold;
+}
+
+li:hover {
+    line-height: 1.8em;
+    color: var(--main-text);
+    font-weight: bold;
+}
+
+a {
+    color: var(--main-text);
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--main-hover);
+    font-weight: bold;
+}
+
 .iconarea {
     height: 22vh;
     width: 100vw;
@@ -77,32 +99,6 @@ ul {
     text-align: left;
     font-weight: bold;
     transition: .5s;
-}
-
-.account {
-    line-height: 1.8em;
-    color: var(--main-text);
-}
-
-.account:hover {
-    line-height: 1.8em;
-    color: var(--main-text);
-}
-
-.accountlink {
-    color: var(--main-text);
-    font-weight: bold;
-}
-
-.accountlink:hover {
-    color: var(--main-hover);
-    font-weight: bold;
-}
-
-.non-account {
-    line-height: 1.8em;
-    color: var(--main-text);
-    font-weight: bold;
 }
 
 .grafana {
