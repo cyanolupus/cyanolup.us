@@ -43,17 +43,28 @@ h2 {
 
 ul {
     color: var(--main-text);
+    padding-left: 0px;
 }
 
-li,li:hover {
+li {
+    list-style-type: none;
     line-height: 1.8em;
     color: var(--main-text);
     font-weight: bold;
+    position: relative;
+}
+
+li:before {
+    color: var(--main-hover);
+    content: "-";
+    font-weight: normal;
 }
 
 a,a:link,a:visited {
     color: var(--main-text);
     font-weight: bold;
+    margin-right: 0.1em;
+    margin-left: 0.1em;
 }
 
 a:hover,a:active {
