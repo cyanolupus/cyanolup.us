@@ -84,6 +84,12 @@ img {
     max-height: 30vh;
 }
 
+figcaption {
+    font-size: 0.8em;
+    color: var(--main-text);
+    text-align: left;
+}
+
 code {
     display: inline-block;
     color: #c9d1d9;
