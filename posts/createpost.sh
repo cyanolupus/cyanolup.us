@@ -3,6 +3,8 @@
 cwd=$(pwd)
 cd $1
 
+title=$(cat index.md | ggrep -oP '(?<=^# ).*(?=)')
+
 header="<!doctype html>
 <html>
 <head>
@@ -19,8 +21,8 @@ header="<!doctype html>
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css'>
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'>
 <meta property='og:description' content='さいあの/るぷす'>
-<meta property='og:title' content='$(basename `pwd`)'>
-<title>$(basename `pwd`)</title></head>"
+<meta property='og:title' content='$title'>
+<title>$title</title></head>"
 
 footer="<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'></script>
 <script>hljs.initHighlightingOnLoad();</script></body>
