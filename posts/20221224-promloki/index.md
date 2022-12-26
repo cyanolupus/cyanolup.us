@@ -19,7 +19,7 @@ Prometheus,Loki を Grafana に寄せてトークン付きのリクエストで�
 遠隔書き込みだけであれば Prometheus や Loki には remote_write 用の API が生えていて、 Prometheus や Promtail などの設定に記述することで実現することができる。
 
 ```yaml
-# prometheus.yml
+### prometheus.yml
 global:
   external_labels:
     provider: unique_name
@@ -29,7 +29,7 @@ remote_write:
 ```
 
 ```yaml
-# promtail/config.yml
+### promtail/config.yml
 clients:
   - url: https://loki.kakikomisaki/loki/api/v1/push
     external_labels:
@@ -74,7 +74,7 @@ Generate token ボタンを押すとリクエストのヘッダーにとして�
 Prometheus の remote_write 設定は簡単にできて、`remote_write.headers` 以下にメモった Client ID と Client Secret を書くだけです。
 
 ```yaml
-# prometheus.yml
+### prometheus.yml
 
 remote_write:
   - url: https://prometheus.kakikomisaki/api/v1/write
@@ -90,7 +90,7 @@ Promtail くんにはまだヘッダを設定するオプションが存在し�
 その場合は以下のように設定します。
 
 ```yaml
-# promtail/config.yml
+### promtail/config.yml
 
 clients:
   - url: https://loki.kakikomisaki/loki/api/v1/push
