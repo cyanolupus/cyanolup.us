@@ -24,9 +24,11 @@ header="<!doctype html>
 <meta property='og:title' content='$title'>
 <title>$title</title>
 </head>
-<body>"
+<body>
+"
 
-footer="<sub><script>document.write(location.pathname);</script></sub>
+footer="
+<sub><script>document.write(location.pathname);</script></sub>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
