@@ -22,10 +22,14 @@ header="<!doctype html>
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'>
 <meta property='og:description' content='さいあの/るぷす'>
 <meta property='og:title' content='$title'>
-<title>$title</title></head>"
+<title>$title</title>
+</head>
+<body>"
 
-footer="<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'></script>
-<script>hljs.initHighlightingOnLoad();</script></body>
+footer="<sub><script>document.write(location.pathname);</script></sub>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
 </html>"
 
 pandocres="$(pandoc index.md)"
