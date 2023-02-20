@@ -1,5 +1,5 @@
 :root {
-    --main-text: #21000b;
+    --main-text: #0b0b0b;
     --main-bg: #fefefe;
     --h1-size: 32px;
     --h2-size: 24px;
@@ -8,8 +8,8 @@
 }
 @media (prefers-color-scheme: dark) {
     :root {
-        --main-text: #fff5f5;
-        --main-bg: #21000b;
+        --main-text: #cdcdcd;
+        --main-bg: #000000;
     }
 }
 @media screen and (max-width:480px) {
