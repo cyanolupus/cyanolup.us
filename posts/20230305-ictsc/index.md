@@ -5,10 +5,10 @@ tosukeくんが誘ったあざらしくんにいきなり誘われて、ICTSC202
 ## 参加メンバー
 
 - cyanolupus (https://twitter.com/cyanolupus)
-- coord-e (https://twitter.com/coord_e)
+- coorde (https://twitter.com/coord_e)
 - tosuke (https://twitter.com/t0suk3)
-- azarashi2931 (https://twitter.com/azarashi_uni)
-- public_yusuke (https://twitter.com/public_yusuke)
+- azrsh (https://twitter.com/azarashi_uni)
+- pyusuke (https://twitter.com/public_yusuke)
 
 この 5 人でチーム word-unknown-tsukuba-otaku として参加しました。
 
