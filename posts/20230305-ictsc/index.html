@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+<link rel='shortcut icon' href='https://cyanolup.us/img/icon_trs_low.png' type='image/x-icon'>
+<meta property='og:type' content='website'>
+<meta property='og:url' content='cyanolup.us'>
+<meta property='“og:image”' content='https://cyanolup.us/img/icon.jpg'>
+<meta name='twitter:card' content='summary'>
+<meta name='twitter:site' content='@cyanolupus'>
+<meta name='“twitter:image”' content='https://cyanolup.us/img/icon.jpg'>
+<link rel='stylesheet' href='https://cyanolup.us/css/main.css' type='text/css'>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css'>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'>
+<meta property='og:description' content='さいあの/るぷす'>
+<meta property='og:title' content='ICTSC2022 に参加しました'>
+<title>ICTSC2022 に参加しました</title>
+</head>
+<body>
+<h1 id="ictsc2022-に参加しました">ICTSC2022 に参加しました</h1>
+<p>tosukeくん (https://twitter.com/t0suk3) が誘った あざらしくん
+(https://twitter.com/azarashi_uni) にいきなり誘われて、ICTSC2022
+に参加しました。</p>
+<h2 id="当日まで">当日まで</h2>
+<p>当日がいつか把握していなかったので当日を意識できていませんでした。</p>
+<h2 id="解いたやつ">解いたやつ</h2>
+<p>生粋の Linux ガキ (ネットワークはわからない)
+としてはシェルをいじるような問題でお茶を濁すことでチームに貢献しました。</p>
+<ul>
+<li>ajl: protocが… 見つからない!? (300)</li>
+<li>lty: やらかしたかもしれない… (100)</li>
+<li>cfb: ストレージ消し飛んだ… (200)</li>
+</ul>
+<h2 id="解答を見ていくやつ">解答を見ていくやつ</h2>
+<h3 id="ajl-protocが-見つからない">ajl: protocが… 見つからない!?</h3>
+<p>この問題は Dockerfile を書いて alpine のよく知られた問題としての
+glibc と musl libc
+の互換性のなさを埋めつつ不足バイナリを足すやつでした。</p>
+<p><code>protoc</code> が <code>PATH</code> に存在するのに
+<code>/bin/sh: protoc: not found</code> となって動かないので gcompat と
+libstdc++ と libgcc を入れてやることで glibc への依存を誤魔化して
+<code>go</code> からバイナリを適当に落としてきた。（経緯: 実際 debian
+をベースイメージにしてみるとコンパイルまで通るのでそれでいいなと思った）（てかビルドしたくなくね？w）</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode diff"><code class="sourceCode diff"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- builder/Dockerfile.bkup     2023-03-04 12:14:37.336263829 +0900</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ builder/Dockerfile  2023-03-04 14:14:21.871430982 +0900</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -6,6 +6,12 @@</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   wget -q &quot;https://github.com/protocolbuffers/protobuf/releases/download/v22.0/protoc-22.0-linux-x86_64.zip&quot; -O &quot;protobuf.zip&quot; &amp;&amp; \</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   unzip -o protobuf.zip -d protobuf &amp;&amp; chmod -R 755 protobuf/*</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">+RUN GOBIN=/download/gobin go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28 &amp;&amp; \</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">+  GOBIN=/download/gobin go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a> FROM golang:1.20.1-alpine AS builder</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">+RUN apk add --no-cache gcompat libstdc++ libgcc</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="va">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a> COPY --from=dl /download/protobuf/bin /usr/local/bin/</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">+COPY --from=dl /download/gobin /usr/local/bin/</span></span></code></pre></div>
+<h3 id="lty-やらかしたかもしれない">lty: やらかしたかもしれない…</h3>
+<p>簡単で root ユーザーとして rbash から bash に chsh してやる。</p>
+<h3 id="cfb-ストレージ消し飛んだ">cfb: ストレージ消し飛んだ…</h3>
+<p><code>zfs send</code> で出力したデータを <code>unpigz</code>
+で圧縮して <code>openssl enc</code> で暗号化したものを
+<code>{}.enc</code>
+として保存していたのでその逆をやれば良くて、適当にやって
+<code>zfs recv</code>
+で受け取ってやれば良い。一応スナップショットが残っていたりすると衝突エラーが出るので予め消す必要がある。</p>
+<pre class="shell"><code>#!/bin/bash
+
+function decode() {
+    cat $1 | openssl enc -iter 100 -aes-256-cbc -d -k ictsc2022 | unpigz -c
+}
+
+zfs destroy -r zpool
+
+for i in $(ls $1 -1); do
+    decode $1/$i | zfs recv zpool -F
+done</code></pre>
+<h2 id="応援">応援</h2>
+<p>シェル芸問題を消費してしまったあとは過度な並列化によって仕事がなくなってしまったので、ランキング表を目<code>watch</code>して盛り上げたり、「応援」していました。</p>
+<h2 id="感想">感想</h2>
+<ul>
+<li>仲間のおかげで優勝まで連れて行ってもらって本当に4人友達がいてよかったなと思いました。</li>
+<li>なんか自分の実力でも解ける問題があって楽しかったので参加してよかったなと思いました。</li>
+</ul>
+<sub><script>document.write(location.pathname);</script></sub>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
