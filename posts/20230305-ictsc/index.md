@@ -1,6 +1,16 @@
 # ICTSC2022 に参加しました
 
-tosukeくん (https://twitter.com/t0suk3) が誘った あざらしくん (https://twitter.com/azarashi_uni) にいきなり誘われて、ICTSC2022 に参加しました。
+tosukeくんが誘ったあざらしくんにいきなり誘われて、ICTSC2022 に参加しました。
+
+## 参加メンバー
+
+- cyanolupus (https://twitter.com/cyanolupus)
+- coord-e (https://twitter.com/coord_e)
+- tosuke (https://twitter.com/t0suk3)
+- azarashi2931 (https://twitter.com/azarashi_uni)
+- public_yusuke (https://twitter.com/public_yusuke)
+
+この 5 人でチーム word-unknown-tsukuba-otaku として参加しました。
 
 ## 当日まで
 
