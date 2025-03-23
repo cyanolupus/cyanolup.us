@@ -164,6 +164,7 @@ h2 a,h2 a:hover,h2 a:active {
 .handlename {
     color: var(--main-bg);
     font-weight: bold;
+    display: inline-block;
 }
 
 .handlename:hover::before {
