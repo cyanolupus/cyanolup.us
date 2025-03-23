@@ -1,6 +1,8 @@
 :root {
     --main-text: #0b0b0b;
     --main-bg: #fefefe;
+    --sub-text: #7d7d7d;
+    --sub-bg: #f0f0f0;
     --h1-size: 32px;
     --h2-size: 24px;
     --body-size: 18px;
@@ -10,6 +12,8 @@
     :root {
         --main-text: #cdcdcd;
         --main-bg: #000000;
+        --sub-text: #a0a0a0;
+        --sub-bg: #1a1a1a;
     }
 }
 @media screen and (max-width:480px) {
@@ -111,7 +115,7 @@ pre > code {
 }
 
 .talking {
-    height: 22vh;
+    height: 12vh;
     width: 100vw;
     white-space: nowrap;
 }
@@ -133,10 +137,9 @@ pre > code {
 }
 
 .talking textarea {
-    line-height: 1.8em;
     vertical-align: top;
     background-color: var(--main-bg);
-    font-size: var(--h2-size);
+    font-size: var(--text-size);
     color: var(--main-text);
     resize: none;
     height: 100%;
@@ -148,20 +151,95 @@ pre > code {
     transition: .5s;
 }
 
-.grafana,.grafana:link,.grafana:visited,.grafana:active {
-    font-weight: bold;
-    color: var(--main-bg);
-    text-decoration: none;
-}
-
-.grafana:hover {
-    font-weight: bold;
-    color: var(--main-text);
-    text-decoration: none;
-}
-
 h2 a,h2 a:hover,h2 a:active {
     color: var(--main-text);
     font-weight: bold;
     text-decoration: none;
+}
+
+.nodecoration {
+    text-decoration: none;
+}
+
+.handlename {
+    color: var(--main-bg);
+    font-weight: bold;
+    display: inline-block;
+}
+
+.handlename:hover::before {
+    color: var(--sub-text);
+    content: "Yuto Takahashi";
+    font-weight: bold;
+}
+
+.fade-anime-container {
+    display: inline-flex;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.fade-anime-text-old {
+    opacity: 0;
+    position: relative;
+}
+
+.fade-anime-text-new {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+@supports (animation: name) {
+    .fade-anime-text-old {
+        opacity: 1;
+        animation: fade-anime-hide-text 1.2s forwards;
+    }
+
+    .fade-anime-text-new {
+        opacity: 0;
+        animation: fade-anime-show-text 1.2s forwards;
+    }
+
+    .fade-anime-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--main-text);
+        transform: translateY(100%);
+        animation: fade-anime-mask-slide 1.2s forwards;
+    }
+
+    @keyframes fade-anime-mask-slide {
+        0% { transform: translateY(100%); }
+        50% { transform: translateY(0%); }
+        100% { transform: translateY(-100%); }
+    }
+
+    @keyframes fade-anime-hide-text {
+        50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+
+    @keyframes fade-anime-show-text {
+        49% { opacity: 0; }
+        50%, 100% { opacity: 1; }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-anime-text-old {
+        opacity: 0 !important;
+    }
+    .fade-anime-text-new {
+        opacity: 1 !important;
+    }
+    .fade-anime-mask {
+        display: none !important;
+    }
 }
