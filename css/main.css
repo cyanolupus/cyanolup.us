@@ -137,7 +137,6 @@ pre > code {
 }
 
 .talking textarea {
-    line-height: 1.8em;
     vertical-align: top;
     background-color: var(--main-bg);
     font-size: var(--text-size);
