@@ -140,7 +140,7 @@ pre > code {
     line-height: 1.8em;
     vertical-align: top;
     background-color: var(--main-bg);
-    font-size: var(--h2-size);
+    font-size: var(--text-size);
     color: var(--main-text);
     resize: none;
     height: 100%;
@@ -150,18 +150,6 @@ pre > code {
     text-align: left;
     font-weight: bold;
     transition: .5s;
-}
-
-.grafana,.grafana:link,.grafana:visited,.grafana:active {
-    font-weight: bold;
-    color: var(--main-bg);
-    text-decoration: none;
-}
-
-.grafana:hover {
-    font-weight: bold;
-    color: var(--main-text);
-    text-decoration: none;
 }
 
 h2 a,h2 a:hover,h2 a:active {
