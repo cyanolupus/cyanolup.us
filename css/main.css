@@ -216,18 +216,18 @@ h2 a,h2 a:hover,h2 a:active {
 
     @keyframes fade-anime-mask-slide {
         0% { transform: translateY(100%); }
-        40%, 70% { transform: translateY(0%); }
+        50% { transform: translateY(0%); }
         100% { transform: translateY(-100%); }
     }
 
     @keyframes fade-anime-hide-text {
-        40% { opacity: 1; }
-        41%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
     }
 
     @keyframes fade-anime-show-text {
-        40% { opacity: 0; }
-        70%, 100% { opacity: 1; }
+        49% { opacity: 0; }
+        50%, 100% { opacity: 1; }
     }
 }
 
