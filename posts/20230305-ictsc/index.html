@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Loading...</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <meta name="description" content="Loading..." />
 
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary" />
+    <!-- Favicon -->
+    <link rel="icon" href="/img/icon_trs_low.png" type="image/png">
 
-  <link rel="stylesheet" href="/css/main.css" type="text/css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Loading...">
+    <meta property="og:description" content="Loading...">
+    <meta property="og:url" content="https://cyanolup.us/posts/all">
+    <meta property="og:image" content="https://cyanolup.us/img/icon.jpg">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@cyanolupus">
+    <meta name="twitter:title" content="Loading...">
+    <meta name="twitter:description" content="Loading...">
+    <meta name="twitter:image" content="https://cyanolup.us/img/icon.jpg">
 
-  <style>
-    body { max-width: 800px; margin: 2em auto; padding: 0 1em; font-family: sans-serif; }
-    pre code { white-space: pre-wrap; }
-  </style>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <style>
+        body { max-width: 800px; margin: 2em auto; padding: 0 1em; font-family: sans-serif; }
+        pre code { white-space: pre-wrap; }
+    </style>
 </head>
 
 <body>
-  <main id="content">Loading...</main>
+    <main id="content">Loading...</main>
 
-  <script>
-    (async () => {
-      const path = location.pathname;
-      const dir = path.endsWith('/') ? path : path.replace(/\/[^/]*$/, '/');
-      const mdUrl = dir + 'index.md';
+    <script>
+        (async () => {
+        const path = location.pathname;
+        const dir = path.endsWith('/') ? path : path.replace(/\/[^/]*$/, '/');
+        const mdUrl = dir + 'index.md';
 
-      const dirParts = dir.split('/').filter(Boolean);
-      let rawTitle = dirParts[dirParts.length - 1] || 'untitled';
-      document.title = rawTitle;
+        const dirParts = dir.split('/').filter(Boolean);
+        let rawTitle = dirParts[dirParts.length - 1] || 'untitled';
+        document.title = rawTitle;
 
-      try {
-        const res = await fetch(mdUrl);
-        if (!res.ok) throw new Error(`failed to fetch: ${mdUrl}`);
-        const md = await res.text();
-        const html = marked.parse(md);
+        try {
+            const res = await fetch(mdUrl);
+            if (!res.ok) throw new Error(`failed to fetch: ${mdUrl}`);
+            const md = await res.text();
+            const html = marked.parse(md);
 
-        document.getElementById('content').innerHTML = html;
-        hljs.highlightAll();
-      } catch (err) {
-        document.getElementById('content').innerHTML = `<pre>error: ${err.message}</pre>`;
-      }
-    })();
-  </script>
+            document.getElementById('content').innerHTML = html;
+            hljs.highlightAll();
+        } catch (err) {
+            document.getElementById('content').innerHTML = `<pre>error: ${err.message}</pre>`;
+        }
+        })();
+    </script>
 </body>
 </html>

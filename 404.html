@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <link rel="shortcut icon" href="/img/icon_trs_low.png" type="image/x-icon">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>ない 404</title>
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="ない 404" />
-        <meta property="og:description" content="ないっす" />
-        <meta property="og:url" content="cyanolup.us" />
-        <meta property=“og:image” content="https://cyanolup.us/img/icon.jpg" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@cyanolupus" />
-        <meta name=“twitter:image” content="https://cyanolup.us/img/icon.jpg" />
+        <meta name="description" content="ないっす" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="/img/icon_trs_low.png" type="image/png">
+
+        <!-- OGP -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="ない 404">
+        <meta property="og:description" content="ないっす">
+        <meta property="og:url" content="https://cyanolup.us/404">
+        <meta property="og:image" content="https://cyanolup.us/img/icon.jpg">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@cyanolupus">
+        <meta name="twitter:title" content="ない 404">
+        <meta name="twitter:description" content="ないっす">
+        <meta name="twitter:image" content="https://cyanolup.us/img/icon.jpg">
+
+        <!-- Stylesheet -->
         <link rel="stylesheet" href="/css/main.css" type="text/css">
     </head>
 
     <body>
         <h1>ない</h1>
         <p>
-            <script type="text/javascript">document.write('' + location.hostname + location.pathname + ' はない');</script>
+            <script type="text/javascript">
+                var decodedPath = decodeURIComponent(location.pathname);
+                document.write(location.hostname + decodedPath + ' はない');
+              </script>
         </p>
 
         <p>
