@@ -3,39 +3,57 @@
 cwd=$(pwd)
 cd $1
 
-title=$(cat index.md | ggrep -oP '(?<=^# ).*(?=)')
-
-header="<!doctype html>
-<html>
+cat <<EOF > index.html
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<meta name='viewport' content='width=device-width,initial-scale=1.0'>
-<link rel='shortcut icon' href='/img/icon_trs_low.png' type='image/x-icon'>
-<meta property='og:type' content='website'>
-<meta property='og:url' content='cyanolup.us'>
-<meta property='“og:image”' content='https://cyanolup.us/img/icon.jpg'>
-<meta name='twitter:card' content='summary'>
-<meta name='twitter:site' content='@cyanolupus'>
-<meta name='“twitter:image”' content='https://cyanolup.us/img/icon.jpg'>
-<link rel='stylesheet' href='/css/main.css' type='text/css'>
-<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css'>
-<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'>
-<meta property='og:description' content='さいあの/るぷす'>
-<meta property='og:title' content='$title'>
-<title>$title</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Loading...</title>
+
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+  <style>
+    body { max-width: 800px; margin: 2em auto; padding: 0 1em; font-family: sans-serif; }
+    pre code { white-space: pre-wrap; }
+  </style>
 </head>
+
 <body>
-"
+  <main id="content">Loading...</main>
 
-footer="
-<sub><script>document.write(location.pathname);</script></sub>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'></script>
-<script>hljs.initHighlightingOnLoad();</script>
+  <script>
+    (async () => {
+      const path = location.pathname;
+      const dir = path.endsWith('/') ? path : path.replace(/\/[^/]*$/, '/');
+      const mdUrl = dir + 'index.md';
+
+      const dirParts = dir.split('/').filter(Boolean);
+      let rawTitle = dirParts[dirParts.length - 1] || 'untitled';
+      document.title = rawTitle;
+
+      try {
+        const res = await fetch(mdUrl);
+        if (!res.ok) throw new Error(`failed to fetch: ${mdUrl}`);
+        const md = await res.text();
+        const html = marked.parse(md);
+
+        document.getElementById('content').innerHTML = html;
+        hljs.highlightAll();
+      } catch (err) {
+        document.getElementById('content').innerHTML = `<pre>error: ${err.message}</pre>`;
+      }
+    })();
+  </script>
 </body>
-</html>"
-
-pandocres="$(pandoc index.md)"
-
-echo "$header$pandocres$footer" > index.html
+</html>
+EOF
 
 cd $cwd

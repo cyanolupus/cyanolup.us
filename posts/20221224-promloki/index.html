@@ -1,144 +1,50 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<meta name='viewport' content='width=device-width,initial-scale=1.0'>
-<link rel='shortcut icon' href='/img/icon_trs_low.png' type='image/x-icon'>
-<meta property='og:type' content='website'>
-<meta property='og:url' content='cyanolup.us'>
-<meta property='“og:image”' content='https://cyanolup.us/img/icon.jpg'>
-<meta name='twitter:card' content='summary'>
-<meta name='twitter:site' content='@cyanolupus'>
-<meta name='“twitter:image”' content='https://cyanolup.us/img/icon.jpg'>
-<link rel="stylesheet" href="/css/main.css" type="text/css">
-<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css'>
-<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'>
-<meta property='og:description' content='さいあの/るぷす'>
-<meta property='og:title' content='Cloudflareを酷使してメトリクス集める話'>
-<title>Cloudflareを酷使してメトリクス集める話</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Loading...</title>
+
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+  <style>
+    body { max-width: 800px; margin: 2em auto; padding: 0 1em; font-family: sans-serif; }
+    pre code { white-space: pre-wrap; }
+  </style>
 </head>
+
 <body>
-<h1
-id="cloudflareを酷使してメトリクス集める話">Cloudflareを酷使してメトリクス集める話</h1>
-<p>天久保 Advent Calendar 2022 によって生えた記事 <a
-href="https://adventar.org/calendars/8233">https://adventar.org/calendars/8233</a></p>
-<h2 id="経緯">経緯</h2>
-<p>録画鯖や「目にした画像全部落とすくん」などを動かすために手元でサーバーを運用する機会が多くて、
-Grafana Loki や Prometheus
-を各拠点で立てていたんですが拠点が死ぬとメトリクス全てにアクセスできなくなって困っていた。</p>
-<h2 id="どうしたい">どうしたい</h2>
-<p>それぞれの拠点の Prometheus,Loki に VPN
-越しでアクセスするのをやめて</p>
-<figure>
-<img src="./img/old.png" alt="古い" />
-<figcaption aria-hidden="true">古い</figcaption>
-</figure>
-<p>Prometheus,Loki を Grafana
-に寄せてトークン付きのリクエストで書き込むようにする。</p>
-<figure>
-<img src="./img/new.png" alt="新しい" />
-<figcaption aria-hidden="true">新しい</figcaption>
-</figure>
-<h2 id="どうやるか">どうやるか</h2>
-<p>遠隔書き込みだけであれば Prometheus や Loki には remote_write 用の
-API が生えていて、 Prometheus や Promtail
-などの設定に記述することで実現することができる。</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">### prometheus.yml</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">global</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">external_labels</span><span class="kw">:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">provider</span><span class="kw">:</span><span class="at"> unique_name</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">remote_write</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">url</span><span class="kw">:</span><span class="at"> https://prometheus.kakikomisaki/api/v1/write</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">### promtail/config.yml</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">clients</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">url</span><span class="kw">:</span><span class="at"> https://loki.kakikomisaki/loki/api/v1/push</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">external_labels</span><span class="kw">:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">provider</span><span class="kw">:</span><span class="at"> unique_name</span></span></code></pre></div>
-<p>これだけでもいいんですが、知らん人に書き込まれたくないじゃないですか。どうすればええねん。認証認可とかだるすぎるって。</p>
-<h3 id="cloudflareくんの登場">Cloudflareくんの登場！</h3>
-<p>Cloudflare には Zero Trust
-という認証認可とかを全部請け負ってくれるくんがいるんです。ここで勘のいい人はドメインが必要なことに気づいたはずです、
-早く買ってきてください。</p>
-<figure>
-<img src="./img/cloudflare.png" alt="押したことありましたか？" />
-<figcaption aria-hidden="true">押したことありましたか？</figcaption>
-</figure>
-<p>まず Cloudflare Zero Trust 上で Secret を作成します。サイドタブ？の
-Access/Service Auth を押してもらって、Service Token タブで Create
-Service Token を押します。有効期限は一応つけておきましょう。</p>
-<figure>
-<img src="./img/create_token.png" alt="適当に作っちゃおう" />
-<figcaption aria-hidden="true">適当に作っちゃおう</figcaption>
-</figure>
-<p>Generate token ボタンを押すとリクエストのヘッダーにとして使える
-Client ID と Client Secret
-の組が表示されます。ここでしか表示されないので確実にメモっておきましょう。</p>
-<p>次に書き込み先とするドメインについてのルールを設定していきます。サイドタブの
-Access/Applications を押してもらって、Add an application
-しちゃいます。Self-hosted
-を選んで書き込み先としたいドメインを入力していきます。</p>
-<p><img src="./img/application.png" /></p>
-<p>認証についてのオプションがあってコンソールなどにメール認証とか Google
-認証でアクセスできるようにもできますが、今回はスコープから外します、のでこのまま次に進みます。</p>
-<p>今回の目的でもあるアクセスする際のポリシーについての設定が出てくるので、ここで先程作成した
-Service Token を Allow として設定します。</p>
-<figure>
-<img src="./img/policy.png" alt="複数指定もできる" />
-<figcaption aria-hidden="true">複数指定もできる</figcaption>
-</figure>
-<p>残りの設定についてはおまかせします。</p>
-<h3 id="公開する">公開する</h3>
-<p>ここまでの作業が終わっているなら設定したドメインを用いてサーバーを公開しても自由にアクセスされることはありません(たぶん)。Argo
-Tunnel とかを使って書き込み先となるメインの Prometheus と Loki
-を外部から見えるようにします。
-(もちろん通常のDNSレコードを用いた公開方法でも問題ありませんが、Cloudflare
-の DNS レコードを用いる必要があるかつ Proxied である必要があります)</p>
-<figure>
-<img src="./img/tunnel.png" alt="本物です" />
-<figcaption aria-hidden="true">本物です</figcaption>
-</figure>
-<h3 id="各拠点の-prometheus-や-promtail-をわからせる">各拠点の
-Prometheus や Promtail をわからせる</h3>
-<p>Prometheus の remote_write
-設定は簡単にできて、<code>remote_write.headers</code> 以下にメモった
-Client ID と Client Secret を書くだけです。</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">### prometheus.yml</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">remote_write</span><span class="kw">:</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">url</span><span class="kw">:</span><span class="at"> https://prometheus.kakikomisaki/api/v1/write</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">remote_timeout</span><span class="kw">:</span><span class="at"> 20s</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">headers</span><span class="kw">:</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">CF-Access-Client-Id</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;client id dayo&quot;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">CF-Access-Client-Secret</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;client secret dayo&quot;</span></span></code></pre></div>
-<p>Promtail
-くんにはまだヘッダを設定するオプションが存在しないため、筆者は <a
-href="https://github.com/grafana/loki/issues/7470">https://github.com/grafana/loki/issues/7470</a>
-に付随するブランチをビルド(cyanolupus/promtail:customheaders)して動かしています。
-その場合は以下のように設定します。</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">### promtail/config.yml</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">clients</span><span class="kw">:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">url</span><span class="kw">:</span><span class="at"> https://loki.kakikomisaki/loki/api/v1/push</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">custom_headers</span><span class="kw">:</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">CF-Access-Client-Id</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;client id dayo&quot;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">CF-Access-Client-Secret</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;client secret dayo&quot;</span></span></code></pre></div>
-<h2 id="おわりや">おわりや</h2>
-<p>以上の手順で私は幸せになりました。あなたも幸せになりましょう。</p>
-<figure>
-<img src="./img/kokusi.png" alt="酷使している様子" />
-<figcaption aria-hidden="true">酷使している様子</figcaption>
-</figure>
-<figure>
-<img src="./img/grafana.png" alt="かわいいGrafana" />
-<figcaption aria-hidden="true">かわいいGrafana</figcaption>
-</figure>
-<sub><script>document.write(location.pathname);</script></sub>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js'></script>
-<script>hljs.initHighlightingOnLoad();</script>
+  <main id="content">Loading...</main>
+
+  <script>
+    (async () => {
+      const path = location.pathname;
+      const dir = path.endsWith('/') ? path : path.replace(/\/[^/]*$/, '/');
+      const mdUrl = dir + 'index.md';
+
+      const dirParts = dir.split('/').filter(Boolean);
+      let rawTitle = dirParts[dirParts.length - 1] || 'untitled';
+      document.title = rawTitle;
+
+      try {
+        const res = await fetch(mdUrl);
+        if (!res.ok) throw new Error(`failed to fetch: ${mdUrl}`);
+        const md = await res.text();
+        const html = marked.parse(md);
+
+        document.getElementById('content').innerHTML = html;
+        hljs.highlightAll();
+      } catch (err) {
+        document.getElementById('content').innerHTML = `<pre>error: ${err.message}</pre>`;
+      }
+    })();
+  </script>
 </body>
 </html>
