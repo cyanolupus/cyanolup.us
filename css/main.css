@@ -220,9 +220,9 @@ h2 a,h2 a:hover,h2 a:active {
     }
 
     @keyframes fade-anime-mask-slide {
-        0% { transform: translateY(100%); }
+        0% { transform: translateY(105%); }
         50% { transform: translateY(0%); }
-        100% { transform: translateY(-100%); }
+        100% { transform: translateY(-105%); }
     }
 
     @keyframes fade-anime-hide-text {
