@@ -35,11 +35,6 @@ cat <<EOF > index.html
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-
-    <style>
-        body { max-width: 800px; margin: 2em auto; padding: 0 1em; font-family: sans-serif; }
-        pre code { white-space: pre-wrap; }
-    </style>
 </head>
 
 <body>
