@@ -246,4 +246,83 @@ h2 a,h2 a:hover,h2 a:active {
     .fade-anime-mask {
         display: none !important;
     }
+    .secret-ask-me:hover {
+        transform: none !important;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.pure-css-automata { position: relative; display: inline-block; user-select: none; }
+.pure-css-automata input { display: none; }
+.lbls { position: absolute; inset: 0; z-index: 10; }
+.lbls label { display: none; position: absolute; inset: 0; cursor: pointer; }
+.lbls label[for="h1"] { display: block; }
+#h1:checked ~ .lbls label[for="h1"]{display:none;} #h1:checked ~ .lbls label[for="h2"]{display:block;}
+#h2:checked ~ .lbls label[for="h2"]{display:none;} #h2:checked ~ .lbls label[for="h3"]{display:block;}
+#h3:checked ~ .lbls label[for="h3"]{display:none;} #h3:checked ~ .lbls label[for="h4"]{display:block;}
+#h4:checked ~ .lbls label[for="h4"]{display:none;} #h4:checked ~ .lbls label[for="h5"]{display:block;}
+#h5:checked ~ .lbls label[for="h5"]{display:none;} #h5:checked ~ .lbls label[for="h6"]{display:block;}
+#h6:checked ~ .lbls label[for="h6"]{display:none;} #h6:checked ~ .lbls label[for="h7"]{display:block;}
+#h7:checked ~ .lbls label[for="h7"]{display:none;} #h7:checked ~ .lbls label[for="h8"]{display:block;}
+#h8:checked ~ .lbls label[for="h8"]{display:none;} #h8:checked ~ .lbls label[for="h9"]{display:block;}
+#h9:checked ~ .lbls label[for="h9"]{display:none;} #h9:checked ~ .lbls label[for="h10"]{display:block;}
+#h10:checked ~ .lbls label[for="h10"]{display:none;}
+
+.job-role {
+    display: inline-block;
+    color: var(--main-text);
+}
+
+@keyframes b-bump-a { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes b-bump-b { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+
+#h1:checked ~ .job-role { animation: b-bump-a 0.15s; }
+#h2:checked ~ .job-role { animation: b-bump-b 0.15s; }
+#h3:checked ~ .job-role { animation: b-bump-a 0.15s; }
+#h4:checked ~ .job-role { animation: b-bump-b 0.15s; }
+#h5:checked ~ .job-role { animation: b-bump-a 0.15s; }
+#h6:checked ~ .job-role { animation: b-bump-b 0.15s; }
+#h7:checked ~ .job-role { animation: b-bump-a 0.15s; }
+#h8:checked ~ .job-role { animation: b-bump-b 0.15s; }
+#h9:checked ~ .job-role { animation: b-bump-a 0.15s; }
+
+/* 5+ clicks: Cracked state */
+#h5:checked ~ .job-role, #h6:checked ~ .job-role, #h7:checked ~ .job-role, #h8:checked ~ .job-role, #h9:checked ~ .job-role {
+    color: transparent;
+}
+.job-role::before, .job-role::after { display: none; }
+
+#h5:checked ~ .job-role::before, #h6:checked ~ .job-role::before, #h7:checked ~ .job-role::before, #h8:checked ~ .job-role::before, #h9:checked ~ .job-role::before {
+    content: "Software Engineer"; position: absolute; top: 0; left: 0; color: var(--sub-text); white-space: nowrap; pointer-events: none;
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 80% 50%, 65% 25%, 45% 65%, 25% 45%, 15% 60%, 0 50%); transform: translate(-2px, -1px) rotate(-1deg); display: block;
+}
+#h5:checked ~ .job-role::after, #h6:checked ~ .job-role::after, #h7:checked ~ .job-role::after, #h8:checked ~ .job-role::after, #h9:checked ~ .job-role::after {
+    content: "Software Engineer"; position: absolute; top: 0; left: 0; color: var(--sub-text); white-space: nowrap; pointer-events: none;
+    clip-path: polygon(100% 30%, 80% 50%, 65% 25%, 45% 65%, 25% 45%, 15% 60%, 0 50%, 0 100%, 100% 100%); transform: translate(2px, 2px) rotate(1deg); display: block;
+}
+
+/* 10 clicks: Shatter state */
+#h10:checked ~ .job-role { color: transparent; cursor: default; }
+
+#h10:checked ~ .job-role::before,
+#h10:checked ~ .job-role::after {
+    content: ""; display: block; position: absolute; top: 50%; left: 50%;
+    width: 6px; height: 6px; background-color: transparent; opacity: 0;
+    pointer-events: none; clip-path: none; transform: none; white-space: normal;
+}
+#h10:checked ~ .job-role::before { animation: role-fx-a 0.4s ease-out forwards; }
+#h10:checked ~ .job-role::after { animation: role-fx-b 0.4s ease-out forwards; }
+
+@keyframes role-fx-a {
+    0% { opacity: 1; box-shadow: -60px -5px 0 var(--main-text), -40px -5px 0 var(--main-text), -20px -5px 0 var(--main-text), 0px -5px 0 var(--main-text), 20px -5px 0 var(--main-text),  40px -5px 0 var(--main-text),  60px -5px 0 var(--main-text); transform: translate(-50%, -50%); }
+    30% { opacity: 1; box-shadow: -70px -30px 0 var(--main-text), -45px -35px 0 var(--main-text), -25px -40px 0 var(--main-text), 0px -45px 0 var(--main-text), 25px -40px 0 var(--main-text),  45px -35px 0 var(--main-text),  70px -30px 0 var(--main-text); transform: translate(-50%, -50%); }
+    100% { opacity: 0; box-shadow: -90px 60px 0 var(--main-text), -60px 70px 0 var(--main-text), -30px 80px 0 var(--main-text), 0px 90px 0 var(--main-text), 30px 80px 0 var(--main-text),  60px 70px 0 var(--main-text),  90px 60px 0 var(--main-text); transform: translate(-50%, -50%); }
+}
+@keyframes role-fx-b {
+    0% { opacity: 1; box-shadow: -50px 5px 0 var(--main-text), -30px 5px 0 var(--main-text), -10px 5px 0 var(--main-text), 10px 5px 0 var(--main-text), 30px 5px 0 var(--main-text),  50px 5px 0 var(--main-text),  70px 5px 0 var(--main-text); transform: translate(-50%, -50%); }
+    30% { opacity: 1; box-shadow: -60px -10px 0 var(--main-text), -35px -15px 0 var(--main-text), -15px -20px 0 var(--main-text), 10px -20px 0 var(--main-text), 35px -15px 0 var(--main-text),  60px -10px 0 var(--main-text),  85px -5px 0 var(--main-text); transform: translate(-50%, -50%); }
+    100% { opacity: 0; box-shadow: -80px 80px 0 var(--main-text), -50px 90px 0 var(--main-text), -20px 100px 0 var(--main-text), 15px 100px 0 var(--main-text), 50px 90px 0 var(--main-text),  80px 80px 0 var(--main-text),  115px 70px 0 var(--main-text); transform: translate(-50%, -50%); }
 }
