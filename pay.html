@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Payment</title>
+        <meta name="description" content="支払先" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="/img/icon_trs_low.png" type="image/png">
+
+        <!-- OGP -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Payment">
+        <meta property="og:description" content="支払先">
+        <meta property="og:url" content="https://cyanolup.us/pay">
+        <meta property="og:image" content="https://cyanolup.us/img/icon.jpg">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@cyanolupus">
+        <meta name="twitter:title" content="Payment">
+        <meta name="twitter:description" content="支払先">
+        <meta name="twitter:image" content="https://cyanolup.us/img/icon.jpg">
+
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="/css/main.css" type="text/css">
+    </head>
+
+    <body>
+        <h1>Payment</h1>
+        上から順番に嬉しいです。
+
+        <h2>1. ことら送金</h2>
+        <ul id="email-info-container">
+            <li style="list-style-type: none;">
+                <button onclick="showInfo('email-info-container', 'PGxpPjxhIGhyZWY9Im1haWx0bzptZUBjeWxwLnVzIj5tZUBjeWxwLnVzPC9hPjwvbGk+')" style="padding: 0.5em 1em; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #f9f9f9;">メールアドレスを表示する</button>
+            </li>
+        </ul>
+
+        <h2>2. 銀行口座</h2>
+        <ul id="bank-info-container">
+            <li style="list-style-type: none;">
+                <button onclick="showInfo('bank-info-container', 'PGxpPgogICAg5LiJ5LqV5L2P5Y+L6YqA6KGMIDAwMDk8YnI+CiAgICDjgaTjgY/jgbDmlK/lupcgMjQ0PGJyPgogICAg5pmu6YCaIDA2MzgxMjIKPC9saT4KPGxpPgogICAg5L2P5L+hU0JJ44ON44OD44OI6YqA6KGMIDAwMzg8YnI+CiAgICDjg6Hjg63jg7PmlK/lupcgMTA4PGJyPgogICAg5pmu6YCaIDc2MjQyOTEKPC9saT4=')" style="padding: 0.5em 1em; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #f9f9f9;">口座情報を表示する</button>
+            </li>
+        </ul>
+        <script>
+            function showInfo(id, b64) {
+                document.getElementById(id).innerHTML = decodeURIComponent(escape(window.atob(b64)));
+            }
+        </script>
+
+        <h2>3. PayPay</h2>
+        <ul>
+            <li>
+                cyanolupus
+            </li>
+        </ul>
+    </body>
+</html>
