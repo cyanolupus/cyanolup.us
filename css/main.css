@@ -40,6 +40,26 @@ h1 {
     color: var(--main-text);
     line-height: 1.3em;
     font-size: var(--h1-size);
+    width: fit-content;
+}
+
+h1::after {
+    content: "\20 \59 \75 \74 \6f \20 \54 \61 \6b \61 \68 \61 \73 \68 \69 ";
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+    color: var(--sub-text);
+    font-size: 14px;
+    font-weight: normal;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease-in 5s;
+    user-select: none;
+    z-index: 100;
+}
+
+h1:hover::after {
+    opacity: 0.2;
 }
 
 h2 {
@@ -163,18 +183,6 @@ h2 a,h2 a:hover,h2 a:active {
 
 .nodecoration {
     text-decoration: none;
-}
-
-.handlename {
-    color: var(--main-bg);
-    font-weight: bold;
-    display: inline-block;
-}
-
-.handlename:hover::before {
-    color: var(--sub-text);
-    content: "Yuto Takahashi";
-    font-weight: bold;
 }
 
 .fade-anime-container {
