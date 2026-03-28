@@ -1,70 +1,51 @@
 #!/bin/bash
 
 cwd=$(pwd)
-cd $1
+mkdir -p "$1"
 
-cat <<EOF > index.html
+cat <<EOF > "$1/index.html"
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading...</title>
-    <meta name="description" content="Loading..." />
+    <title>$1</title>
+    <meta name="description" content="$1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/img/icon_trs_low.png" type="image/png">
 
     <!-- OGP -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Loading...">
-    <meta property="og:description" content="Loading...">
-    <meta property="og:url" content="https://cyanolup.us/posts/all">
+    <meta property="og:title" content="$1">
+    <meta property="og:description" content="$1">
+    <meta property="og:url" content="https://cyanolup.us/posts/$1">
     <meta property="og:image" content="https://cyanolup.us/img/icon.jpg">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@cyanolupus">
-    <meta name="twitter:title" content="Loading...">
-    <meta name="twitter:description" content="Loading...">
+    <meta name="twitter:title" content="$1">
+    <meta name="twitter:description" content="$1">
     <meta name="twitter:image" content="https://cyanolup.us/img/icon.jpg">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/main.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
-
+    <script src="/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
 </head>
 
 <body>
   <main id="content">Loading...</main>
-
-  <script>
-    (async () => {
-      const path = location.pathname;
-      const dir = path.endsWith('/') ? path : path.replace(/\/[^/]*$/, '/');
-      const mdUrl = dir + 'index.md';
-
-      const dirParts = dir.split('/').filter(Boolean);
-      let rawTitle = dirParts[dirParts.length - 1] || 'untitled';
-      document.title = rawTitle;
-
-      try {
-        const res = await fetch(mdUrl);
-        if (!res.ok) throw new Error(`failed to fetch: ${mdUrl}`);
-        const md = await res.text();
-        const html = marked.parse(md);
-
-        document.getElementById('content').innerHTML = html;
-        hljs.highlightAll();
-      } catch (err) {
-        document.getElementById('content').innerHTML = `<pre>error: ${err.message}</pre>`;
-      }
-    })();
-  </script>
 </body>
 </html>
 EOF
 
-cd $cwd
+if [ ! -f "$1/index.md" ]; then
+  echo "# $1" > "$1/index.md"
+fi
+
+cd "$cwd"

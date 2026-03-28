@@ -41,6 +41,23 @@ h1 {
     line-height: 1.3em;
     font-size: var(--h1-size);
     width: fit-content;
+    position: relative;
+}
+
+h1::before {
+    content: "#";
+    position: absolute;
+    right: calc(100% + 0.3em);
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: normal;
+    user-select: none;
+    pointer-events: none;
+}
+
+h1:hover::before {
+    opacity: 0.4;
 }
 
 h1::after {
@@ -66,6 +83,24 @@ h2 {
     color: var(--main-text);
     line-height: 1.3em;
     font-size: var(--h2-size);
+    width: fit-content;
+    position: relative;
+}
+
+h2::before {
+    content: "##";
+    position: absolute;
+    right: calc(100% + 0.3em);
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: normal;
+    user-select: none;
+    pointer-events: none;
+}
+
+h2:hover::before {
+    opacity: 0.4;
 }
 
 p {
@@ -86,13 +121,14 @@ li {
 }
 
 li:before {
-    opacity: 70%;
     content: "-";
-    font-weight: normal;
-    font-size: 1.8em;
-    vertical-align: middle;
     position: absolute;
-    left: -0.5em;
+    left: -1em;
+    color: var(--sub-text);
+    opacity: 0.4;
+    font-weight: normal;
+    user-select: none;
+    pointer-events: none;
 }
 
 a,a:link,a:visited {
@@ -100,11 +136,116 @@ a,a:link,a:visited {
     font-weight: bold;
     margin-right: 0.1em;
     margin-left: 0.1em;
+    position: relative;
 }
 
 a:hover,a:active {
     color: var(--main-hover);
     font-weight: bold;
+}
+
+a:not(:has(img, picture, svg))::before {
+    content: "[";
+    position: absolute;
+    right: 100%;
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: normal;
+    text-decoration: none;
+    pointer-events: none;
+    user-select: none;
+}
+
+a:not(:has(img, picture, svg))::after {
+    content: "]";
+    position: absolute;
+    left: 100%;
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: normal;
+    text-decoration: none;
+    pointer-events: none;
+    user-select: none;
+    z-index: 10;
+}
+
+a:not(:has(img, picture, svg)):hover::before {
+    opacity: 0.5;
+}
+
+a:not(:has(img, picture, svg)):hover::after {
+    opacity: 1; /* Opaque so background covers overlap */
+    color: var(--sub-text); /* Still matches fake faint coloration perfectly */
+}
+
+a[href^="http" i]:not(:has(img, picture, svg)):hover::after,
+a[href^="."]:not(:has(img, picture, svg)):hover::after,
+a[href^="/"]:not(:has(img, picture, svg)):hover::after {
+    content: "](" attr(href) ")";
+    white-space: nowrap;
+    background-color: var(--main-bg);
+}
+
+a[data-hover-url]:not(:has(img, picture, svg)):hover::after {
+    content: "](" attr(data-hover-url) ")";
+    white-space: nowrap;
+    background-color: var(--main-bg);
+}
+
+b, strong {
+    position: relative;
+}
+
+b::before, strong::before {
+    content: "**";
+    position: absolute;
+    right: 100%;
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: normal;
+    pointer-events: none;
+    user-select: none;
+}
+
+b::after, strong::after {
+    content: "**";
+    position: absolute;
+    left: 100%;
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: normal;
+    pointer-events: none;
+    user-select: none;
+}
+
+b:hover::before, b:hover::after,
+strong:hover::before, strong:hover::after {
+    opacity: 0.4;
+}
+
+blockquote {
+    position: relative;
+    padding-left: 1em;
+}
+
+blockquote::before {
+    content: ">";
+    position: absolute;
+    right: calc(100% + 0.3em);
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: normal;
+    pointer-events: none;
+    user-select: none;
+}
+
+blockquote:hover::before {
+    opacity: 0.4;
 }
 
 img {
@@ -126,6 +267,38 @@ code {
     padding-right: 0.3em;
     border-radius: 3px;
     background-color: #0d1117;
+    position: relative;
+}
+
+code::before {
+    content: "`";
+    position: absolute;
+    right: 100%;
+    color: #8b949e;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    user-select: none;
+}
+
+code::after {
+    content: "`";
+    position: absolute;
+    left: 100%;
+    color: #8b949e;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    user-select: none;
+}
+
+code:hover::before, code:hover::after {
+    opacity: 0.6;
+}
+
+pre {
+    position: relative;
+    margin: 1.5em 0;
 }
 
 pre > code {
@@ -136,6 +309,40 @@ pre > code {
     color: #c9d1d9;
     overflow: scroll;
     white-space: pre-wrap;
+}
+
+pre > code::before, pre > code::after {
+    content: none;
+}
+
+pre::before {
+    content: "```";
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    line-height: 1.2em;
+    pointer-events: none;
+    user-select: none;
+}
+
+pre::after {
+    content: "```";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: var(--sub-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+    line-height: 1.2em;
+    pointer-events: none;
+    user-select: none;
+}
+
+pre:hover::before, pre:hover::after {
+    opacity: 0.4;
 }
 
 .talking {
@@ -188,7 +395,6 @@ h2 a,h2 a:hover,h2 a:active {
 .fade-anime-container {
     display: inline-flex;
     position: relative;
-    overflow: hidden;
     white-space: nowrap;
 }
 
@@ -223,14 +429,14 @@ h2 a,h2 a:hover,h2 a:active {
         width: 100%;
         height: 100%;
         background: var(--main-text);
-        transform: translateY(100%);
+        clip-path: inset(100% 0 0 0);
         animation: fade-anime-mask-slide 1.2s forwards;
     }
 
     @keyframes fade-anime-mask-slide {
-        0% { transform: translateY(105%); }
-        50% { transform: translateY(0%); }
-        100% { transform: translateY(-105%); }
+        0% { clip-path: inset(100% 0 0 0); }
+        50% { clip-path: inset(0 0 0 0); }
+        100% { clip-path: inset(0 0 100% 0); }
     }
 
     @keyframes fade-anime-hide-text {
@@ -265,8 +471,8 @@ html {
 
 .pure-css-automata { position: relative; display: inline-block; user-select: none; }
 .pure-css-automata input { display: none; }
-.lbls { position: absolute; inset: 0; z-index: 10; }
-.lbls label { display: none; position: absolute; inset: 0; cursor: pointer; }
+.lbls { position: absolute; inset: 0; z-index: 10; cursor: default; }
+.lbls label { display: none; position: absolute; inset: 0; cursor: inherit; }
 .lbls label[for="h1"] { display: block; }
 #h1:checked ~ .lbls label[for="h1"]{display:none;} #h1:checked ~ .lbls label[for="h2"]{display:block;}
 #h2:checked ~ .lbls label[for="h2"]{display:none;} #h2:checked ~ .lbls label[for="h3"]{display:block;}
@@ -333,4 +539,35 @@ html {
     0% { opacity: 1; box-shadow: -50px 5px 0 var(--main-text), -30px 5px 0 var(--main-text), -10px 5px 0 var(--main-text), 10px 5px 0 var(--main-text), 30px 5px 0 var(--main-text),  50px 5px 0 var(--main-text),  70px 5px 0 var(--main-text); transform: translate(-50%, -50%); }
     30% { opacity: 1; box-shadow: -60px -10px 0 var(--main-text), -35px -15px 0 var(--main-text), -15px -20px 0 var(--main-text), 10px -20px 0 var(--main-text), 35px -15px 0 var(--main-text),  60px -10px 0 var(--main-text),  85px -5px 0 var(--main-text); transform: translate(-50%, -50%); }
     100% { opacity: 0; box-shadow: -80px 80px 0 var(--main-text), -50px 90px 0 var(--main-text), -20px 100px 0 var(--main-text), 15px 100px 0 var(--main-text), 50px 90px 0 var(--main-text),  80px 80px 0 var(--main-text),  115px 70px 0 var(--main-text); transform: translate(-50%, -50%); }
+}
+
+.breadcrumb a::before, .breadcrumb a::after {
+    content: none !important;
+}
+
+.breadcrumb {
+    color: var(--sub-text);
+    font-size: calc(var(--body-size) * 0.8);
+    font-family: monospace;
+    opacity: 0.5;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0;
+    margin-top: calc(var(--h1-size) * -0.5);
+    white-space: nowrap;
+    user-select: none;
+    font-weight: normal;
+}
+
+.breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: normal;
+    margin: 0;
+}
+
+.breadcrumb a:hover {
+    color: var(--main-text);
+    opacity: 1;
 }
